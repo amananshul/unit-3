@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#container{
+    height: 400px;
+    width: 350px;
+    margin: 50px auto;
+    background: rgb(203, 217, 219);
+    position: relative;
+    border-radius: 6px;
+    box-shadow: rgba(238, 232, 232, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+#form-container{
+    position: absolute;
+    top: 20%;
+    left: 20%;
+
+}
+
+h2{
+    position: absolute;
+    left:10%;
+    top:5%;
+}
+
+label{
+    margin: 14px 2px;
+}
+
+input{
+    margin: 8px 2px;
+    outline: none;
+    border: none;
+    width: 190px;
+    height: 29px;
+    border-radius: 3px;
+    padding-left: 6px;
+}
+
+#submit{
+    cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2>Enter Your Details Below</h2>
+        <div id="form-container">
+            <form action="" id="myForm">
+                <label for="name">Name</label> <br>
+                <input type="text" id="name" ><br>
+                <label for="number">Number</label> <br>
+                <input type="number" id="num" ><br>
+                <label for="city">City</label> <br>
+                <input type="text" id="city" > <br>
+                <input type="submit" value="Submit" id="submit">
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
+<script>
+   document.getElementById("submit").addEventListener("click", stud);
+var studArr=JSON.parse(localStorage.getItem("stuData"))||[];
+
+function stud(event) {
+    event.preventDefault();
+    var obj=function(name){
+    console.log(`my name is ${this.name} and i belong to place ${this.city} and my number is ${this.number}`);
+}
+var studObj={
+    name:document.getElementById("name").value,
+    number:document.getElementById("num").value,
+    city:document.getElementById("city").value
+}
+obj.call(studObj)
+// console.log(studObj)
+studArr.push(studObj)
+localStorage.setItem("stuData",JSON.stringify(studArr))
+window.location.href="student.html"
+}
+    
+</script>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>studt2</title>
+    <style>
+      #tabDiv {
+        width: 70%;
+        border-collapse: collapse;
+        justify-content:center;
+        position: relative;
+        margin: 100px 100px;
+       
+      }
+      table,
+      td,
+      th {
+        border: 1px solid;
+      }
+    </style>
+  </head>
+  <body>
+    <table id="tabDiv">
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Number</td>
+          <td>City</td>
+        </tr>
+      </thead>
+      <tbody id="container"></tbody>
+    </table>
+  </body>
+</html>
+<script>
+  var studArr = JSON.parse(localStorage.getItem("stuData"));
+  studArr.map(function (elem, index) {
+    var div = document.createElement("tr");
+    var studName = document.createElement("td");
+    studName.innerText = elem.name;
+    var studNum = document.createElement("td");
+    studNum.innerText = elem.number;
+    var studCity = document.createElement("td");
+    studCity.innerText = elem.city;
+
+    div.append(studName, studNum, studCity);
+    document.getElementById("container").append(div);
+  });
+</script>
