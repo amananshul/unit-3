@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        font-family: sans-serif;
+      }
+      #submit {
+        text-align: center;
+        padding: 0px;
+        color: #111111;
+        font-size: 21px;
+        width: 82%;
+        background-color: #70dbafb8;
+      }
+      body {
+        background: linear-gradient(
+            217deg,
+            rgba(255, 0, 0, 0.8),
+            rgba(255, 0, 0, 0) 70.71%
+          ),
+          linear-gradient(
+            127deg,
+            rgba(0, 255, 0, 0.8),
+            rgba(0, 255, 0, 0) 70.71%
+          ),
+          linear-gradient(
+            336deg,
+            rgba(0, 0, 255, 0.8),
+            rgba(0, 0, 255, 0) 70.71%
+          );
+      }
+      #parent {
+        width: 350px;
+        height: 1100px;
+        margin: auto;
+        margin-top: 50px;
+        text-align: center;
+        justify-content: center;
+        box-sizing: border-box;
+        border: 1px solid transparent;
+        border-radius: 3px;
+      }
+      input {
+        display: block;
+        margin: auto;
+        margin-top: 15px;
+        width: 75%;
+        height: 45px;
+        background-color: rgb(233, 233, 233);
+        border: 1px solid transparent;
+        border-radius: 3px;
+        padding-left: 10px;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div id="parent">
+      <h1>Sign Up Details</h1>
+      <form id="form">
+        <input id="email" type="text" placeholder="enter email" />
+        <input id="user" type="text" placeholder="Enter username" />
+        <input id="pass" type="text" placeholder="Enter password" />
+        <input type="submit" id="submit" />
+      </form>
+    </div>
+  </body>
+</html>
+
+<script>
+  document.querySelector("#form").addEventListener("submit", myFormSubmit);
+
+  var signupArr = JSON.parse(localStorage.getItem("signUpDetails")) || [];
+
+  function myFormSubmit() {
+    event.preventDefault();
+
+    var signupObj = {
+      email: document.querySelector("#email").value,
+      username: document.querySelector("#user").value,
+      pass: document.querySelector("#pass").value,
+    };
+    signupArr.push(signupObj);
+    localStorage.setItem("signUpDetails", JSON.stringify(signupArr));
+    window.location.href = "login.html";
+  }
+</script>

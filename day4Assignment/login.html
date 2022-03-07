@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        font-family: sans-serif;
+      }
+     h1{
+        
+        margin: 1px 5px 31px -95px;
+     }
+      #parent {
+      
+        width: 380px;
+        height: 1100px;
+        margin: auto;
+        margin-top: 150px;
+        text-align: center;
+        justify-content: center;
+        box-sizing: border-box;
+        border: 1px solid white;
+        border-radius: 3px;
+
+      }
+      input {
+        display: block;
+        margin-top: 15px;
+        width: 75%;
+        height: 45px;
+        background-color: rgb(233, 233, 233);
+        color: black;
+        border: 1px solid transparent;
+        border-radius: 3px;
+        padding-left: 10px;
+      }
+      #submit{
+        cursor: pointer;
+        background-color:green;
+        color: white;
+        margin: 21px 8px;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div id="parent">
+      <h1>Login</h1>
+      <form id="form">
+        <input id="email" type="text" placeholder="Enter username" value=""/>
+        <input id="pass" type="password" placeholder="Enter password" />
+        <input type="submit" id="submit"  />
+      </form>
+    </div>  
+     
+  </body>
+</html>
+
+<script>
+
+  var regdUsers = JSON.parse(localStorage.getItem("signUpDetails"));
+  // console.log(regdUsers);
+
+  document.querySelector("#form").addEventListener("submit", formSubmit);
+
+  function formSubmit(event) {
+    event.preventDefault();
+    var email=document.querySelector("#email").value;
+    var pass= document.querySelector("#pass").value;
+
+    // var email = form.email.value;
+    // var pass = form.pass.value;
+    // console.log(email, pass);
+  
+  var flag=false;
+  for(var i=0; i<regdUsers.length; i++)
+  {
+    // console.log(regdUsers[i].user)
+    if(regdUsers[i].email==email && regdUsers[i].pass==pass)
+    {
+      flag=true
+      
+    }
+  }
+  if (flag==true)
+  {
+    alert("success")
+    // window.location.href = "index.html"
+
+  }
+  else{
+    alert("login unccessful")
+  }
+  }
+
+  // whenever you want to store multiple objects
+</script>
