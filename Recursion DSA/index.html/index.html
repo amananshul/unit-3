@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <select id="food">
+      <option value="fries">fries</option>
+      <option value="burger">burger</option>
+      <option value="pizza">pizza</option>
+    </select>
+    <button onclick="myFood()">Sub,it</button>
+  </body>
+</html>
+<script>
+  let passExam = true;
+  let myprom = new Promise(function (resolve, reject) {
+    if (passExam) {
+      resolve("bike");
+    } else {
+      reject("paragon");
+    }
+  });
+  // on success
+  myprom.then(function (response) {
+    console.log(response);
+  });
+  // on failiure
+  myprom.catch(function (error) {
+    console.log("error:", error);
+  });
+
+  //.then, resoleve:- positive
+  //.catch, reject :- negative
+  function get(id) {
+    return document.getElementById(id).value;
+  }
+
+  function myFood() {
+    let food = get("food");
+    let status = "open";
+    let foodPromise = new Promise(function (resolve, reject) {
+      let time=Math.random()*10000;
+        if (status == "close") {
+        reject("Shop closed");
+    } else {
+        setTimeout(function () {
+            resolve(food);
+        }, time);
+      }
+    });
+
+    // foodPromise.then(function (res) {
+    //   console.log(`${res} is ready toserve`);
+    // });
+    // foodPromise.catch(function (error) {
+    //   console.log(`${error}`);
+    // });
+  // }
+
+  try{
+    let res=await foodPromise
+    console.log(res)
+  }
+  catch (error){
+    console.log(`${error}`);
+  }
+
+}
+</script>
