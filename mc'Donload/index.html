@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      
+      * {
+        font-family: sans-serif;
+        font-size: 22px;
+        font-weight: 600;
+        margin:auto
+        /* color:white */
+      }
+
+      #food {
+        margin: 5px;
+        display: block;
+        margin-top: 15px;
+        width: 75%;
+        height: 45px;
+        /* background-color: rgb(233, 233, 233); */
+        color: black;
+        border: 1px solid transparent;
+        border-radius: 3px;
+        padding-left: 10px;
+      }
+      #food{
+        background-color: rgb(135, 252, 252);
+
+      }
+      #right{
+        margin-left:900px;
+        margin-top: 100px;
+        float:right;
+        font-size: 30px;
+      }
+
+      #parent {
+        /* height:800px; */
+        /* width:800px; */
+        /* background-image: url(./mcdonalds-fast-food-restaurant-in-metro-atlanta-georgia-2AAMWKB.jpg); */
+        opacity: 0.88;
+        display: grid;
+
+        justify-content: center;
+        align-items: center;
+        /* margin: auto; */
+      }
+      img {
+        border: none;
+        height: 500px;
+        width: 600px;
+      }
+      p {
+        font-size: 25px;
+        /* color: whitesmoke; */
+        /* background-color: rgb(135, 252, 252); */
+
+      }
+      #overview > button {
+        margin-top: 10px;
+        background-color: rgb(135, 252, 252);
+        padding: 2px;
+        font-size: 15px;
+        width: 150px;
+        height: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="parent">
+      <div id="right">
+        <h5 id="order" ></h5>
+      </div>
+      <p style="font-size: 30px">McDonalds Food Service</p>
+      <select id="food">
+        <option value="Select">Select Menu</option>
+        <option
+          value="https://mcdonaldsblog.in/wp-content/uploads/2015/05/McDonalds_LovinIt.jpg"
+          >
+          French Fries
+        </option>
+        <option
+          value="https://mcdonaldsblog.in/wp-content/uploads/2019/08/mcdonalds-indian-burger-new.jpg"
+        >
+          burger
+        </option>
+        <option
+          value="https://img.onmanorama.com/content/dam/mm/en/food/features/images/2021/10/17/pizza.jpg"
+        >
+          pizza
+        </option>
+        <option
+          value="https://www.eatthis.com/wp-content/uploads/sites/4/2021/01/mcdonalds-snack-wraps.jpg?quality=82&strip=all"
+        >
+          Wraps
+        </option>
+      </select>
+      <div id="overview">
+        <button id="order-food">Order food</button>
+      </div>
+      <p id="foodpromise">Waiting in queue</p>
+      <!-- div id="foodfail"> Waiting in queue</p> -->
+      <img id="image" />
+    </div>
+  </body>
+</html>
+<script>
+  //.then, resoleve:- positive
+  //.catch, reject :- negative
+  function get(id) {
+    return document.getElementById(id).value;
+  }
+  document.getElementById("order-food").addEventListener("click", myFood);
+  function myFood() {
+    let food = get("food");
+    console.log(food);
+    let status = "open";
+    let foodPromise = new Promise(function (resolve, reject) {
+      let time = Math.random() * 10000;
+      if (status == "close") {
+        reject("Shop closed");
+      } else {
+        setTimeout(function () {
+          resolve(food);
+          document.getElementById("foodpromise").innerText = "Your Order is ready";
+
+          document.getElementById("order").innerText =" Order ID :-551542592"
+        }, time);
+      }
+    });
+
+    foodPromise.then(function (res) {
+      console.log(`${res} is ready toserve`);
+      document.getElementById("image").src = res;
+    });
+    foodPromise.catch(function (error) {
+      console.log(`${error}`);
+      document.getElementById("foodpromise").innerText = error;
+    });
+  }
+
+  // try{
+  //   let res=await foodPromise
+  //   console.log(res)
+  // }
+  // catch (error){
+  //   console.log(`${error}`);
+  // }
+
+  // }
+</script>

@@ -16,22 +16,22 @@
   </body>
 </html>
 <script>
-  let passExam = true;
-  let myprom = new Promise(function (resolve, reject) {
-    if (passExam) {
-      resolve("bike");
-    } else {
-      reject("paragon");
-    }
-  });
-  // on success
-  myprom.then(function (response) {
-    console.log(response);
-  });
-  // on failiure
-  myprom.catch(function (error) {
-    console.log("error:", error);
-  });
+  // let passExam = true;
+  // let myprom = new Promise(function (resolve, reject) {
+  //   if (passExam) {
+  //     resolve("bike");
+  //   } else {
+  //     reject("paragon");
+  //   }
+  // });
+  // // on success
+  // myprom.then(function (response) {
+  //   console.log(response);
+  // });
+  // // on failiure
+  // myprom.catch(function (error) {
+  //   console.log("error:", error);
+  // });
 
   //.then, resoleve:- positive
   //.catch, reject :- negative
@@ -41,6 +41,7 @@
 
   function myFood() {
     let food = get("food");
+    console.log(food)
     let status = "open";
     let foodPromise = new Promise(function (resolve, reject) {
       let time=Math.random()*10000;
@@ -53,21 +54,21 @@
       }
     });
 
-    // foodPromise.then(function (res) {
-    //   console.log(`${res} is ready toserve`);
-    // });
-    // foodPromise.catch(function (error) {
-    //   console.log(`${error}`);
-    // });
+    foodPromise.then(function (res) {
+      console.log(`${res} is ready toserve`);
+    });
+    foodPromise.catch(function (error) {
+      console.log(`${error}`);
+    });
+  }
+
+  // try{
+  //   let res=await foodPromise
+  //   console.log(res)
+  // }
+  // catch (error){
+  //   console.log(`${error}`);
   // }
 
-  try{
-    let res=await foodPromise
-    console.log(res)
-  }
-  catch (error){
-    console.log(`${error}`);
-  }
-
-}
+// }
 </script>
