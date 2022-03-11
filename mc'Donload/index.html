@@ -16,10 +16,10 @@
       }
 
       #food {
-        margin: 5px;
+        margin-left: 275px;
         display: block;
         margin-top: 15px;
-        width: 75%;
+        width: 35%;
         height: 45px;
         /* background-color: rgb(233, 233, 233); */
         color: black;
@@ -116,6 +116,8 @@
   }
   document.getElementById("order-food").addEventListener("click", myFood);
   function myFood() {
+    document.getElementById("foodpromise").innerText = "waiting in queue";
+   
     let food = get("food");
     console.log(food);
     let status = "open";
