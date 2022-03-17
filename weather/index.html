@@ -30,11 +30,11 @@ const searchVideos = async()=>{
     try{
    let input =document.querySelector("#input").value
    let res= await fetch(
-       'https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${input}&key=AIzaSyCT51oa4H7Rqu_QkzTTrzjatecqore_9A0&maxResults=20')
+       `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${input}&key=AIzaSyCT51oa4H7Rqu_QkzTTrzjatecqore_9A0&maxResults=20`)
    let data= await res.json();
    
    let videos=data.items;
-//    console.log(videos)
+   console.log(videos)
    appendVideos(videos)
 
 
@@ -56,15 +56,25 @@ const appendVideos= (data)=>{
       
       var iframe=document.createElement('iframe')
       iframe.src= `https://www.youtube.com/embed/${el.id.videoId}`
-    
-       div.append(iframe,title)
+
+
+      var thumbnail=document.createElement('img')
+      thumbnail.src=el.snippet.thumbnails.high.url
+      thumbnail.addEventListener('click', function(){
+          myVideo(el)
+
+      })
+      div.append(title,thumbnail)
       ser.append(div)
-    
+      
         })
     }
     catch(e) {
         console.error(e)
     }
+}
+function myVideo(el){
+    
 }
 
 </script>

@@ -1,0 +1,42 @@
+* {
+    font-family: sans-serif;
+  }
+  #submit {
+    text-align: center;
+    padding: 0px;
+    color: #111111;
+    font-size: 21px;
+    width: 82%;
+    background-color: #70dbafb8;
+  }
+  
+  #signup-form-div {
+    width: 350px;
+    height: 1100px;
+    margin: auto;
+    margin-top: 50px;
+    text-align: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    border-radius: 3px;
+  }
+  input {
+   
+    margin-top: 15px;
+    width: 75%;
+    height: 45px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    padding-left: 10px;
+  }
+
+  input[type="text"],
+input[type="password"],
+input[type="email"] {
+    color: #444;
+    font-weight: bold;
+    border: 1px solid #d5d7d8;
+    border-radius: 3px;
+  
+  }
