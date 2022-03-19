@@ -50,7 +50,7 @@ input{
 
     
 }
-#poster{
+#posters{
     width: 150px;
     height: 150px;
 
@@ -69,4 +69,24 @@ input{
     cursor: pointer;
    color: rgb(70 30 30 / 90%)
 }
+/* #searchPoster {
+    width: 150px;
+    height: 150px;
+    margin-right: 50px;
+  } */
 
+  #singleMovie {
+    height: 600px;
+    width: 70%;
+    /* background-color: brown; */
+    margin: auto;
+    margin-top: 70px;
+    display: grid;
+   justify-content:center;
+    gap: 20px;
+    box-sizing: border-box;
+  }
+  #poster {
+    height: 77%;
+    width: 50%;
+  }

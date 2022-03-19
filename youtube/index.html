@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{margin-left: 590px;
+        color:brown}
+     #searchResults {
+  display: grid;
+  grid-template-columns: repeat(4, 21%);
+  place-content: center;
+  gap: 40px;
+}
+#navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  background-color: white;
+  height: 86px;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  justify-content: space-evenly;
+  gap: 40px;
+  text-align: center;
+}
+#left {
+  padding: 25px;
+}
+a{
+  color: black;
+  text-decoration: none;
+}
+
+#mid {
+  display: flex;
+  place-content: center;
+  place-items: center;
+  margin-left: 50px;
+  /* background-color: aqua; */
+}
+#searchDiv {
+  display: flex;
+  place-content: center;
+  place-items: center;
+  /* background-color: blanchedalmond; */
+  width: 90%;
+  height: 40px;
+  padding: 10px;
+}
+#right {
+  display: flex;
+  place-content: center;
+  place-items: center;
+  /* background-color: blanchedalmond; */
+  width: 90%;
+  height: 40px;
+  padding: 10px;
+}
+#search {
+  height: 34px;
+  width: 47%;
+  /* margin:auto */
+
+}
+button {
+    height: 34px;
+    width: 125px;
+    color: white;
+    background-color: green;
+}
+
+#left-side {
+  /* position: static; */
+
+  /* width: 220px; */
+  display: block;
+  margin-top: 100px;
+  height: 100%;
+}
+#right-side {
+  margin-top: 100px;
+}
+.thumbnail {
+  height: 255px;
+  width: 100%;
+}
+
+#anc:hover {
+  /* background-color: purple; */
+  cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    <h1>Youtube</h1>
+    <div id="searchDiv">
+        <input type="text" id="search" placeholder="    Search..." />
+        <button onclick="searchVideo()">Search
+        </button>
+        
+      </div>
+
+    <div id="container">
+        <div id="left-side"></div>
+        <div id="right-side">
+          <div id="searchResults"></div>
+        </div>
+      </div>
+</body>
+</html>
+<script>
+    // appending default most popular items
+
+const popular = async () => {
+  try {
+    let result = await fetch(
+      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&key=AIzaSyDNPg6ZHatmypgpHcpvJ2I34dPvgpKZsHc&maxResults=50&regionCode=in`
+    );
+    let data = await result.json();
+    console.log(data);
+    appendPopular(data.items);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+popular()
+
+
+// appending popular vidoes to
+const appendPopular = (data) => {
+    let container = document.querySelector("#searchResults");
+    container.innerHTML = null;
+  
+    data.forEach((el) => {
+      let main = document.createElement("a");
+      main.setAttribute("id", "anc");
+      main.addEventListener("click", () => {
+        refvid(el.id);
+      });
+  
+      let title = document.createElement("p");
+      title.setAttribute("id", "title");
+      title.innerText = el.snippet.title;
+  
+      let thumbnail = document.createElement("img");
+      thumbnail.setAttribute("class", "thumbnail");
+      thumbnail.src = el.snippet.thumbnails.high.url;
+      main.append(thumbnail, title);
+      container.append(main);
+    });
+  };
+
+const searchVideo = async () => {
+  try {
+    let input = document.querySelector("#search").value;
+    let res = await fetch(
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${input}&key=AIzaSyDNPg6ZHatmypgpHcpvJ2I34dPvgpKZsHc&maxResults=20&regionCode=in`
+    );
+
+    // 'https://youtube.googleapis.com/youtube/v3/videos?chart=mostPopular&key=AIzaSyDNPg6ZHatmypgpHcpvJ2I34dPvgpKZsHc&maxResults=20&regionCode=in'
+
+    let data = await res.json();
+    console.log(data.items);
+    appendVideo(data.items);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const appendVideo = (data) => {
+  let container = document.querySelector("#searchResults");
+  container.innerHTML = null;
+
+  data.forEach((el) => {
+    let main = document.createElement("a");
+    main.setAttribute("id", "anc");
+    main.addEventListener("click", () => {
+      refvid(el.id.videoId);
+    });
+
+    let title = document.createElement("p");
+    title.setAttribute("id", "title");
+    title.innerText = el.snippet.title;
+
+    let thumbnail = document.createElement("img");
+    thumbnail.setAttribute("class", "thumbnail");
+    thumbnail.src = el.snippet.thumbnails.high.url;
+    main.append(thumbnail, title);
+    container.append(main);
+  });
+};
+let fullvid = document.querySelector("#vid");
+function refvid(el) {
+  console.log(el,"hii");
+  localStorage.setItem("vidId", JSON.stringify(el));
+  window.location.href = "/videopage.html";
+}
+//   `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${input}&key=AIzaSyCT51oa4H7Rqu_QkzTTrzjatecqore_9A0&maxResults=20`)
+
+    // const ser = document.getElementById("searchResult")
+
+</script>
