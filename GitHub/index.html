@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div id="navbar"></div>
+    <div id="cont"></div>
+</body>
+</html>
+<script type="module">
+    import header from "./comp/header.js"
+
+    let navbar = document.getElementById("navbar")
+    navbar.innerHTML=header()
+
+    let input_box=document.getElementById("search-input")
+
+    input_box.addEventListener('keypress',()=>{
+     getData(event)
+    })
+     let img=document.getElementById("profile-img")
+
+    const getData = async(event)=>{
+        console.log(event)
+        if(event.code=='Enter'){
+            try {
+                let input=input_box.value
+            console.log(input)
+            let res=await fetch (`https://api.github.com/users/${input}/repos`)
+            let data=await res.json()
+            console.log(data)
+            appendData(data)
+            img.src=data[0].owner.avatar_url
+                
+            } catch (error) {
+                console.log(error)
+            }
+            
+        }
+    }
+    var container=document.getElementById("cont")
+    const appendData=(data) => {
+        container.innerHTML=null;
+        data.map((el) =>{
+            var div = document.createElement("div")
+            var title = document.createElement("p")
+            var name = document.createElement("h2")
+            name.innerText=el.name
+            title.innerHTML=el.full_name;
+           var id= document.createElement("p")
+           id.innerText= el.node_id
+           div.append(title,id,name)
+           container.append(div)
+
+        })
+    }
+</script>
