@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #nav{
+    top: 0;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin: 39px;
+    border: solid 1px rgb(63, 13, 13);
+    padding-left: 4%;
+    padding-right: 4%;
+    margin-top: 0;
+    margin-bottom: 100px;
+    font-size: 25px;
+    background-color:black;
+    text-decoration: none;
+    color:white;
+}
+        #dish{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 5px;
+    width:90%;
+    justify-content:center;
+    margin: auto;
+}
+img{
+  display: block;
+  width: 400px;
+  height: 300px;
+}
+#header{
+    display:flex;
+    /* text-align: center; */
+    
+    /* justify-content:center; */
+}
+
+    </style>
+</head>
+<body>
+    <!-- <div id="pa"> -->
+        <div id="header"></div>
+
+        <div id="dish"></div>
+    <!-- </div> -->
+</body>
+</html>
+<script type="module">
+        import {nav,show,singleappend} from "./comp/comp.js"
+    let header = document.getElementById("header")
+    header.innerHTML =nav()
+    let url = `https://themealdb.com/api/json/v1/1/random.php`;
+    let data = await show(url);
+    console.log(data)
+    let id =data.meals[0]
+    let parent = document.querySelector("#dish");
+    //  console.log(data.meals);
+      singleappend(id, parent);
+</script>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #nav{
+    top: 0;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin: 39px;
+    border: solid 1px rgb(63, 13, 13);
+    padding-left: 4%;
+    padding-right: 4%;
+    margin-top: 0;
+    margin-bottom: 100px;
+    font-size: 25px;
+    background-color:black;
+    text-decoration: none;
+    color:white;
+}
+#search-box {
+    margin: 5px 175px;
+    font-size: 24px;
+     color: #000046;
+    text-align: center;
+    width: 63%;
+    height: 50px;
+    border-color: aqua;
+    border-radius: 8px;}
+    #content{
+        display: block;
+        align-items: center;
+        margin: auto;
+    }
+
+        #search {
+    margin: 28px -173px;
+    color: brown;
+    height: 39px;
+    width: 99px;
+    background-color: darkgray
+    }
+    h2{
+        margin-left: 455px;
+    }
+    </style>
+</head>
+<body>
+    <div id="header"></div>
+    <div id="content">
+        <h2>Search for Your favorite Recipie</h2>
+        <input type="text" id="search-box" placeholder="Search">
+        <button id="search" type="button">Search</button>
+    </div>
+    <div id="dish"></div>
+</body>
+</html>
+<script type="module">
+    import {nav,show,singleappend} from "./comp/comp.js"
+    let header = document.getElementById("header")
+    header.innerHTML =nav()
+    let parent=document.querySelector("#dish")
+    const searchMe = async () => {
+  parent.innerHTML = null;
+  let val = document.querySelector("#search-box").value
+  let url = `https://themealdb.com/api/json/v1/1/search.php?s=${val}`;
+  let data = await show(url);
+  singleappend( data.meals[0],parent);
+};
+document.querySelector("#search").addEventListener("click", searchMe);
+    
+</script>

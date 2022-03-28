@@ -24,21 +24,21 @@ function appendmovies(data){
         return false;
     }
     data.forEach(function(el){
-        let anc= document.createElement("a");
+        // let anc= document.createElement("a");
         let div = document.createElement("div");
         div.setAttribute("id", "sdiv")
         var posters = document.createElement("img")
         posters.setAttribute("id", "posters")
         posters.src=el.Poster
 
-        let p =document.createElement('a')
+        let p =document.createElement('p')
         p.setAttribute("id", "p")
-        p.href="#singleMovie"
+        // p.href="#singleMovie"
         p.addEventListener("click", function() {
          takeMe(el)
         })
         p.innerText=el.Title;
-        anc.append(div)
+        // anc.append(div)
         div.append(posters,p)
         movies.append(div)
 

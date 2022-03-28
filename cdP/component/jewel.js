@@ -5,7 +5,8 @@ const getData=async(url)=>{
         let data= await res.json();
         return data
 
-    }catch(e){
+    }
+    catch(e){
         console.log(e)
     }
 }
@@ -27,5 +28,5 @@ data.map(({image,title,price})=>{
 })
 
 }
-
 export{getData,append}
+

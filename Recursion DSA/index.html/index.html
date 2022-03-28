@@ -167,6 +167,7 @@
         `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={part}&appid=5c52c3e5cf9c0d249036682d4bb55c69&units=metric`
       );
       let forecastdata = await resolve.json();
+      console.log(forecastdata)
       forecastDis(forecastdata);
       //  console.log(forecastdata.daily)
     } catch (error) {
